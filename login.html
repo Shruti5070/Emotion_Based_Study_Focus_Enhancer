@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='login_style.css') }}?v=1">
+</head>
+
+<body>
+
+<div id="topAlert"></div>
+
+<div class="login-container">
+
+    <!-- Left Side Login Form -->
+    <div class="login-form">
+
+        <h2>Login</h2>
+
+        <form method="POST" autocomplete="off">
+
+            <div class="input-group">
+                <span class="icon">📧</span>
+                <input type="email" name="email" placeholder="Enter your email" autocomplete="off" required>
+            </div>
+
+            <div class="input-group">
+                <span class="icon">🔒</span>
+                <input type="password" name="password" placeholder="Enter your password" autocomplete="new-password" required>
+            </div>
+
+            <button type="submit">Login</button>
+
+        </form>
+
+        <p>
+        Don't have an account?
+        <a href="/register">Signup now</a>
+        </p>
+
+    </div>
+
+    <!-- Right Side Image -->
+    <div class="login-image">
+        <img src="{{ url_for('static', filename='study_focus.jpg') }}" alt="student image">
+
+        <div class="overlay-text">
+            <h3>Turn emotions into better learning!</h3>
+            <p>Unlock your true study potential</p>
+        </div>
+    </div>
+
+</div>
+
+
+<script>
+function showAlert(message){
+
+    let alertBox = document.getElementById("topAlert");
+
+    alertBox.innerText = message;
+    alertBox.classList.add("show");
+
+    setTimeout(function(){
+        alertBox.classList.remove("show");
+    },5000);
+}
+</script>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+    showAlert("{{ messages[0] }}");
+});
+</script>
+{% endif %}
+{% endwith %}
+
+</body>
+</html>

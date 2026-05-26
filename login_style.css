@@ -1,0 +1,179 @@
+/* Container layout */
+
+
+
+.login-container,
+.register-container{
+    width:900px;
+    height:400px;
+    display:flex;
+    background:white;
+    border-radius:6px;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+
+	
+}
+
+/* Left form */
+
+.login-form,
+.register-form{
+    width:40%;
+    padding:30px;
+    font-size:14px;
+}
+
+.login-form,
+.register-form{
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+}
+.login-form form,
+.register-form form{
+    margin-top:8px;
+}
+
+.login-form h2,
+.register-form h2{
+    font-size:22px;
+    margin-bottom:6px;
+	 margin-top:0;
+}
+
+.login-form h2::after,
+.register-form h2::after{
+    content:"";
+    width:35px;
+    height:3px;
+    background:#7b2ff7;
+    display:block;
+    margin-top:6px;
+}
+/* Image container */
+
+/* Image container */
+
+.login-image,
+.register-image{
+    width:60%;
+    position:relative;
+    overflow:hidden;
+}
+
+/* Image */
+
+.login-image img,
+.register-image img{
+    width:100%;
+    height:110%;
+    object-fit:cover;
+    display:block;
+    position:relative;
+    top:-10%;        /* adjust position */
+}
+
+/* Purple overlay */
+
+.login-image::before,
+.register-image::before{
+    content:"";
+    position:absolute;
+    inset:0;
+   background:rgba(123,47,247,0.35);
+    z-index:1;
+}
+
+/* Text on image */
+
+.overlay-text{
+    position:absolute;
+    top:65%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    text-align:center;
+    color:white;
+    width:80%;
+    z-index:2;
+    line-height:1.4;
+}
+
+.overlay-text h3{
+    font-size:25px;
+	font-weight:bold;
+}
+
+.overlay-text p{
+    font-size:16px;
+	font-weight:bold;
+}
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: linear-gradient(135deg,#7b2ff7,#9d4edd);
+    padding:40px;
+    box-sizing:border-box;
+    margin:0;
+}
+
+input{
+    width:100%;
+    border:none;
+    border-bottom:1px solid #ccc;
+    padding:8px 0;
+    margin-bottom:12px;
+    outline:none;
+    font-size:14px;
+}
+
+button{
+    width:100%;
+    padding:11px;
+    border:none;
+    border-radius:4px;
+    background: linear-gradient(135deg,#7b2ff7,#9d4edd);
+    color:white;
+    font-size:15px;
+    cursor:pointer;
+    margin-top:5px;
+
+}
+.input-group{
+    position:relative;
+    margin-bottom:25px;
+}
+
+.icon{
+    position:absolute;
+    
+    top:50%;
+    transform:translateY(-50%);
+    color:#7b2ff7;
+}
+
+.input-group input{
+    padding-left:28px;
+	padding-right:28px;
+	width:100%;
+}
+
+#topAlert {
+    position: fixed;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: black;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: top 0.4s ease;
+    z-index: 1000;
+}
+
+#topAlert.show {
+    top: 20px;
+}

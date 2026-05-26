@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Focus Enhancer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+		<button class="logout-btn" onclick="logoutAnim()">
+    <span class="circle"></span>
+    <span class="btn-text">Logout</span>
+</button>
+        <h1>🎯 Emotion-Based Study / Focus Enhancer</h1>
+        <p>Enter your mood and get a focus suggestion!</p>
+
+        <!-- ORIGINAL FORM (UNCHANGED) -->
+        <form method="POST">
+            <input type="text"
+                   name="mood"
+                   placeholder="Enter your mood here"
+                   value="{{ user_input or '' }}"
+                   required>
+           <input type="submit" name="action" value="Get Suggestion" class="suggest-btn">
+		</form>
+        {% if emotion %}
+        <div class="result">
+            <h2>Detected Emotion: {{ emotion }}</h2>
+            <h2>💡 Suggested Action: {{ solution }}</h2>
+
+            <!-- Show Steps Button (same styling as original button) -->
+            {% if not show_steps %}
+            <form method="POST">
+                <input type="hidden" name="mood" value="{{ user_input }}">
+                <input type="submit" name="action" value="Show Detailed Steps" class="steps-btn">
+			</form>
+            {% endif %}
+
+            <!-- Steps appear only after clicking -->
+            {% if show_steps %}
+            <div  class="steps" style="margin-top:15px;">
+                <h3>📌 Step-by-Step Guide:</h3>
+                <ul>
+    				{% for step in steps %}
+     		   			<li style="margin-bottom:8px;">{{ step }}</li>
+    				{% endfor %}
+				</ul>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Graph buttons -->
+		<!--Confusion matrix -->
+        <div style="margin-top:20px;">
+            <a href="{{ url_for('static', filename='confusion_matrix.png') }}" target="_blank">
+                <button type="button" class="graph-btn">📊 View Confusion Matrix</button>
+            </a>
+	
+		<!-- Daily graph button -->
+		 	<button class="graph-btn" onclick="window.location.href='/daily_analysis'">
+    📈 Daily Emotion Analysis
+</button>
+
+		<!-- Trend graph button -->
+<button class="graph-btn" onclick="window.location.href='/trend_analysis'">
+    📉 Emotion Improvement Trend
+</button>
+
+        </div>
+        {% endif %}
+    </div>
+
+<script>
+function logoutAnim(){
+    const btn = document.querySelector(".logout-btn");
+
+    btn.classList.add("move");
+
+    setTimeout(function(){
+        window.location.href="/logout";
+    },500);
+}
+</script>
+</body>
+</html>

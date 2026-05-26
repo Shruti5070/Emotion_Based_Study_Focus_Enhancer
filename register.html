@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Register</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='login_style.css') }}">
+
+</head>
+
+<body>
+<div id="topAlert"></div>
+<div class="register-container">
+
+    <!-- Left side register form -->
+    <div class="register-form">
+
+        <h2>Create Account</h2>
+
+        <form method="POST" autocomplete="off" data-lpignore="true">
+
+            <label>Username</label><br>
+            <input type="text" name="username" required>
+
+            <label>Email</label><br>
+            <input type="email" name="email" required>
+
+            <label>Password</label><br>
+
+		<input type="password" id="password" name="password" autocomplete="new-password" required onkeyup="validatePassword()">
+
+		
+
+		<span id="passwordError" style="color:red;"></span>
+            <button type="submit">Register</button>
+
+        </form>
+
+        <p>
+        Already have an account?
+        <a href="/login">Login</a>
+        </p>
+
+    </div>
+
+    <!-- Right side image -->
+   <div class="register-image">
+    <img src="{{ url_for('static', filename='study_focus.jpg') }}" alt="student image">
+
+    <div class="overlay-text">
+        <h3>Turn emotions into better learning!</h3>
+        <p>Unlock your true study potential</p>
+    </div>
+</div>
+</div>
+
+<!-- Password validation script -->
+<script>
+
+function validatePassword() {
+
+    let password = document.getElementById("password").value;
+    let error = document.getElementById("passwordError");
+
+    let regex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
+
+    if (password.length === 0) {
+        error.innerHTML = "";
+        return;
+    }
+
+    if (!regex.test(password)) {
+        error.innerHTML = "Password must be 8 characters, include uppercase, number and special character";
+    } 
+    else {
+        error.innerHTML = "";
+    }
+
+}
+
+</script>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+    showAlert("{{ messages[0] }}");
+});
+</script>
+{% endif %}
+{% endwith %}
+</body>
+
+<script>
+function showAlert(message){
+
+    let alertBox = document.getElementById("topAlert");
+
+    alertBox.innerText = message;
+    alertBox.classList.add("show");
+
+    setTimeout(function(){
+        alertBox.classList.remove("show");
+    },5000);
+}
+</script>
+
+
+</html>

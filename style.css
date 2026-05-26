@@ -1,0 +1,207 @@
+body {
+    font-family: Arial;
+    background: linear-gradient(to right, #a8edea, #fed6e3);
+    text-align: center;
+    padding-top: 30px;
+}
+
+.container{
+    background: linear-gradient(to right, #fff7b2, #ffe066);
+    display: inline-block;
+    padding: 30px;
+    border-radius: 10px;
+
+    position:relative;   /* IMPORTANT */
+}
+
+input[type="text"] {
+    padding: 10px;
+    width: 250px;
+}
+
+/* Get Suggestion button */
+.suggest-btn{
+    padding:12px 35px;
+    font-size:16px;
+    font-weight:bold;
+    color:#5a2a00;
+
+    border-radius:40px;
+    border:3px solid #b30000;
+
+    cursor:pointer;
+
+    /* yellow glossy gradient */
+    background: linear-gradient(to bottom,#fff7b2,#ffd400,#ffb300);
+
+    /* glass shine */
+    position:relative;
+    overflow:hidden;
+
+    box-shadow:
+        inset 0 3px 8px rgba(255,255,255,0.7),
+        0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* shine animation layer */
+.suggest-btn{
+    padding:10px 25px;        /* smaller width */
+    font-size:15px;
+    font-weight:bold;
+    color:#5a2a00;
+
+    border-radius:35px;
+    border:3px solid #ff4500;   /* orange-red border */
+
+    cursor:pointer;
+
+    /* glossy yellow gradient */
+    background: linear-gradient(to bottom,#fff7b2,#ffd400,#ffb300);
+
+    position:relative;
+    overflow:hidden;
+
+    box-shadow:
+        inset 0 3px 8px rgba(255,255,255,0.7),
+        0 4px 8px rgba(0,0,0,0.3);
+}
+
+/* glass shine effect */
+.suggest-btn::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-70%;
+    width:40%;
+    height:100%;
+    background:rgba(255,255,255,0.6);
+    transform:skewX(-25deg);
+}
+
+/* hover shine */
+.suggest-btn:hover::before{
+    animation:shine 0.7s forwards;
+}
+
+@keyframes shine{
+    100%{
+        left:120%;
+    }
+}
+
+.suggest-btn:hover{
+    transform:scale(1.05);
+}
+/* Steps button */
+.steps-btn{
+     padding:12px 28px;
+    font-size:16px;
+    color:white;
+    border:none;
+    border-radius:40px;   /* makes button round */
+    cursor:pointer;
+
+    /* green gradient */
+    background: linear-gradient(90deg,#0b2e13,#2fa300,#8fff00,#2fa300,#0b2e13);
+
+    /* glow effect */
+    box-shadow: 0 0 8px rgba(0,255,0,0.6);
+
+    margin:10px;
+}
+
+/* graph btn */
+.graph-btn{
+    width:100px;
+    height:120px;
+    border-radius:50%;   /* makes perfect circle */
+
+    border:none;
+    cursor:pointer;
+    color:#3d2b1f;
+    font-weight:bold;
+    font-size:16px;
+    text-align:center;
+
+    /* yellow-orange-red gradient */
+    background: linear-gradient(90deg,#ffd200,#ff8c00,#ff2e00);
+
+    /* glow effect */
+    box-shadow:0 0 15px rgba(255,140,0,0.8);
+
+    margin:15px;
+}
+
+/* hover animation */
+.graph-btn:hover{
+    transform:scale(1.08);
+    box-shadow:0 0 25px rgba(255,120,0,1);
+}
+/* Logout button */
+
+/* Logout Button */
+.logout-btn{
+    position:absolute;
+    top:10px;
+    right:15px;
+
+    width:100px;
+    height:36px;
+
+    border:3px solid red;
+    border-radius:40px;
+
+    background:transparent;
+    color:red;
+    font-weight:bold;
+    font-size:14px;
+
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding-left:12px;   /* space for circle */
+}
+
+/* text */
+.btn-text{
+    pointer-events:none;
+}
+
+/* circle */
+.circle{
+    position:absolute;
+    width:16px;
+    height:16px;
+
+    background:red;
+    border-radius:50%;
+
+    left:8px;
+    top:50%;
+    transform:translateY(-50%);
+
+    transition:0.5s;
+}
+
+/* animation */
+.logout-btn.move .circle{
+    left:calc(100% - 24px);
+}
+.result{
+    margin-top:20px;
+    padding:18px;
+    border-radius:10px;
+
+    /* middle lime shade on left → lighter shades on right */
+    background: linear-gradient(to right, #9cff00, #cfff4d, #f0ffb3);
+
+    border:1px solid #8bb9c9;
+    box-shadow: 0 0 5px rgba(120,255,0,0.6);
+}
+
+.steps li {
+    color:#0077cc;
+}
