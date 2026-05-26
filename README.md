@@ -28,22 +28,21 @@ Emotion_Project/
 ├── emotion_pipeline.pkl
 ├── emotions_dataset.parquet
 ├── goemotions.csv
-├── __pycache__/
-│   └── train_models.cpython-36.pyc
+├── pycache/
+│ └── train_models.cpython-36.pyc
 ├── static/
-│   ├── confusion_matrix.png
-│   ├── login_style.css
-│   ├── study_focus.jpg
-│   └── style.css
+│ ├── confusion_matrix.png
+│ ├── login_style.css
+│ ├── study_focus.jpg
+│ └── style.css
 ├── templates/
-│   ├── daily_analysis.html
-│   ├── index.html
-│   ├── login.html
-│   ├── register.html
-│   └── trend_analysis.html
+│ ├── daily_analysis.html
+│ ├── index.html
+│ ├── login.html
+│ ├── register.html
+│ └── trend_analysis.html
 ├── train_models.py
 └── vectorizer.pkl
-
 ## Setup Instructions
 
 ### Clone the repository
