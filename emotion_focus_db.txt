@@ -1,0 +1,83 @@
+[root@localhost ~]# service postgresql start
+Redirecting to /bin/systemctl start postgresql.service
+
+[root@localhost ~]# su postgres
+
+bash-4.4$ psql
+could not change directory to "/root": Permission denied
+psql (10.23)
+Type "help" for help.
+
+postgres=# create database emotion_focus_db;
+CREATE DATABASE
+postgres=# \l
+                                     List of databases
+       
+postgres=# \c emotion_focus_db;
+You are now connected to database "emotion_focus_db" as user "postgres".
+
+emotion_focus_db=# CREATE TABLE users (
+emotion_focus_db(# id SERIAL PRIMARY KEY,
+emotion_focus_db(# username VARCHAR(100),
+emotion_focus_db(# email VARCHAR(150) UNIQUE,
+emotion_focus_db(# password VARCHAR(200),
+emotion_focus_db(# created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+emotion_focus_db(# );
+
+CREATE TABLE
+
+emotion_focus_db=# CREATE TABLE emotions (
+emotion_focus_db(# id SERIAL PRIMARY KEY,
+emotion_focus_db(# user_id INTEGER REFERENCES users(id),
+emotion_focus_db(# emotion VARCHAR(20),
+emotion_focus_db(# created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+emotion_focus_db(# );
+
+CREATE TABLE
+
+emotion_focus_db=# \dt
+          List of relations
+ Schema |   Name   | Type  |  Owner   
+--------+----------+-------+----------
+ public | emotions | table | postgres
+ public | users    | table | postgres
+(2 rows)
+
+emotion_focus_db=# INSERT INTO users (username,email,password)
+emotion_focus_db-# VALUES ('testuser','test@gmail.com','12345');
+INSERT 0 1
+
+emotion_focus_db=# SELECT * FROM users;
+ id | username |     email      | password |         created_at         
+----+----------+----------------+----------+----------------------------
+  1 | testuser | test@gmail.com | 12345    | 2026-03-10 17:00:07.571202
+(1 row)
+
+emotion_focus_db=# \q
+bash-4.4$ exit
+
+postgres=# ALTER USER postgres WITH PASSWORD '123';
+ALTER ROLE
+postgres=# \c emotion_focus_db
+
+ALTER TABLE emotions
+emotion_focus_db-# ADD COLUMN updated_at TIMESTAMP;
+ALTER TABLE
+
+emotion_focus_db=# ALTER TABLE emotions
+emotion_focus_db-# ALTER COLUMN created_at TYPE TIMESTAMP(0);
+ALTER TABLE
+emotion_focus_db=# 
+emotion_focus_db=# ALTER TABLE emotions
+emotion_focus_db-# ALTER COLUMN updated_at TYPE TIMESTAMP(0);
+ALTER TABLE
+
+SELECT reg_id, emotion, created_at, updated_at
+FROM emotions e1
+WHERE DATE(created_at) = CURRENT_DATE
+AND COALESCE(updated_at, created_at) = (
+    SELECT MAX(COALESCE(updated_at, created_at))
+    FROM emotions e2
+    WHERE e2.reg_id = e1.reg_id
+    AND DATE(e2.created_at) = CURRENT_DATE
+);
